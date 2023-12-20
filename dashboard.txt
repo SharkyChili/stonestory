@@ -1,0 +1,58 @@
+var screenI = 0;
+var screenTime = 0;
+
+func showFoeStatus()
+    var x = 50
+    var y = screen.h - 15
+//  >`@x@,@y@,loc:@loc@
+//  y++
+    var a = screen.w
+    a = a - 39
+    var b = screen.h
+    b = b - 2
+    >`@a@,@b@,[foe.id:@foe.id@]
+    y++
+    x = 77
+    >`@x@,@y@,lvl:@foe.level@
+    y++
+    >`@x@,@y@,dam:@foe.damage@
+    y++
+    >`@x@,@y@,dis:@foe.distance@
+    y++
+    >`@x@,@y@,hp:@foe.hp@
+    y++
+    >`@x@,@y@,max:@foe.maxhp@
+    y++
+    >`@x@,@y@,armor:@foe.armor@
+    y++
+    >`@x@,@y@,state:@foe.state@
+    y++
+    >`@x@,@y@,time:@foe.time@
+
+func showTotalTime()
+    var minute = totaltime / 1800 % 60
+    var second = totaltime / 30 % 60
+    var frame = totaltime % 30
+    var y = screen.h - 2
+    >`30,@y@,total: @minute@m @second@s @frame@f
+
+func showTime()
+    var minute = time / 1800 % 60
+    var second = time / 30 % 60
+    var frame = time % 30
+    >`30,26,time : @minute@m @second@s @frame@f
+
+showFoeStatus()
+showTotalTime()
+showTime()
+
+?loc.begin | loc.loop
+    screenI = 0
+    screenTime = 0
+
+?screenI > screen.i | screenI < screen.i
+    screenI = screen.i
+    screenTime = 0
+    screenTime = screenTime + 1
+    
+>`0,1,#FFFFFF,screen.i:@screen.i@

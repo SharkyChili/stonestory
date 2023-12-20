@@ -1,0 +1,48 @@
+var state32Time = 0
+var state33Time = 0
+
+var bossNo = 0
+var bossId = "none"
+
+
+func initEveryRound()
+    state32Time = 0
+    state33Time = 0
+
+    bossNo = 0
+    bossId = "none"
+    
+func debugBossState()
+    ?loc.begin | loc.loop
+        initEveryRound()
+
+    ?foe = boss
+        ?string.Equals(foe.id, bossId)
+            bossId = foe.id
+            bossNo = bossNo + 1
+
+            state32Time = 0
+            state33Time = 0
+        
+        ?foe.state = 32
+            ?foe.time > state32Time
+                state32Time = foe.time
+        ?foe.state = 33
+            ?foe.time > state33Time
+                state33Time = foe.time
+
+        // var a = screen.w
+        // a = a - 39
+        // var b = screen.h
+        // b = b - 2
+        // >`@a@,@b@,[foe.id:@foe.id@]
+
+        var bossStateX = screen.w - 39
+        // bossStateX = bossStateX - 39
+        var bossStateY = screen.y - 1
+        // bossStateY = bossStateY - 1
+
+        //todo need fix
+        >`@bossStateX@,@bossStateY@, #FFFFFF, state32:@state32Time@ state33:@state33Time@
+
+debugBossState()

@@ -1,0 +1,39 @@
+var commonAction = import commonAction
+
+var sword = "long_sword *10 +21 dF"
+var shield = "shield *10 +7 af"
+
+var bossStage = 0
+
+func initEveryRound()
+    bossStage = 0
+    equipL @sword@
+    equipR @shield@
+
+?loc.begin | loc.loop
+    initEveryRound()
+
+?foe.distance > 30
+    commonAction.moveFaster()
+:?foe.distance > 10
+    commonAction.quickDive()
+:
+    equipL @sword@
+    equipR @shield@
+
+
+//stage32:23, stage33:19
+
+?foe = boss & foe.id = "yeti"
+    bossStage = 1
+// ?foe = boss & foe.id = ""
+//     bossStage = 2
+
+?bossStage = 0    
+    ?screen.i = 1 & foe.distance = 30
+        commonAction.activateBlade()
+
+?bossStage = 1 & foe.id = "ice_wall"
+    //todo
+    equipL @sword@
+    equipR @shield@

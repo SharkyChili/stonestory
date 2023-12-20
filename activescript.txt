@@ -1,0 +1,5 @@
+func showActiveScript(script)
+    var x = screen.w
+    x = x - 15
+    var y = 0
+    >`@x@,@y@,#FFFFFF,scripts:@script@

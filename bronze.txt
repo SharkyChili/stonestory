@@ -1,0 +1,46 @@
+var commonAction = import commonAction
+
+var heavyCrossbow = "heavy_crossbow *10 +21 D"
+
+var bossStage = 0
+
+var screenI = 0;
+var screenTime = 0;
+
+func initEveryRound()
+    bossStage = 0
+    equip @heavyCrossbow@
+    screenI = 0
+    screenTime = 0
+
+?loc.begin | loc.loop
+    initEveryRound()
+
+>`0,1,#FFFFFF,screen.i:@screen.i@
+
+?foe.distance > 23
+    commonAction.moveFaster()
+    ?pickup & pickup.distance < 15
+        commonAction.autoPickup()   
+:
+    equip @heavyCrossbow@
+
+?screenI > screen.i | screenI < screen.i
+    screenI = screen.i
+    screenTime = 0
+    screenTime = screenTime + 1
+
+?bossStage = 0    
+    ?screen.i = 1 & foe.distance = 30
+        commonAction.activateBlade()
+
+?foe = boss & foe.id = "bronze_guardian"
+    bossStage = 1
+
+?foe = boss
+    ?bossStage = 1
+        equip @heavyCrossbow@
+        //state32 = 35 state33 = 214+
+        ?foe.state = 32 //多少帧需要测试
+            ?foe.time = 35 - 5
+                commonAction.moveBack()

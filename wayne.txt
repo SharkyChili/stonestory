@@ -1,0 +1,50 @@
+// 意念之石启动之后,可以持续执行它所收到的指令.
+// 指令必须使用写入石之脚本.
+// 其他信息请见:StoneStoryRPG.com/stonescript.
+// ——贤者贝赛拉
+
+import common
+import dashboard
+var active = import activescript
+//调试代码
+import bossState
+
+?loc = nagaraja                 //	蛇怪之间
+    import nagaraja
+:?loc = temple                  //	神庙
+
+:?loc = cross_bridge            //	过桥
+
+:?loc = icy_ridge               //	不融山
+    import icyridge
+:?loc = bronze_guardian_harder  //青铜守卫
+    import bronze
+:?loc = bronze_mine             //灼热矿井
+    import bronze  
+:?loc = cross_deadwood_river    //	枯木之河对岸
+
+:?loc = undead_crypt_boss       //无皮巨人
+    import undead
+    active.showActiveScript("undead")
+:?loc = undead_crypt            //亡者之殿 
+    import undead
+    active.showActiveScript("undead")
+:?loc = undead_crypt_intro      //亡者之门
+
+:?loc = uulaa_shop              //温泉店
+
+:?loc = fungus_forest boss      //愤怒蘑菇
+    import fungus
+    active.showActiveScript("fungus")
+:?loc = fungus_forest           //蘑菇森林
+    import fungus
+    active.showActiveScript("fungus")
+:?loc = waterfall               //枯木瀑布
+
+:?loc = caustic_caves           //恐怖洞窟
+    import caustic
+    active.showActiveScript("caustic")
+:?loc = deadwood_valley         //枯木峡谷
+
+:?loc = rocky_plateau           //岩石高地
+ 

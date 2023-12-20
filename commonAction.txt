@@ -1,0 +1,23 @@
+func moveFaster()
+    equipL triskelion_stone
+
+func autoPickup()
+    equip star_stone
+
+func quickDive()
+    equip dashing_shield
+
+func moveBack()
+    ?item.getCooldown("mind") <= 0
+        equip mind_stone
+
+// func addArmor(shield)
+//     equipR @shield@
+
+func activateBlade()
+    ?item.GetCooldown("blade") <= 0
+        equip blade
+        ?item.CanActivate("blade")
+            // screen.Next()
+            activate blade
+    

@@ -1,0 +1,71 @@
+var commonAction = import commonAction
+
+var sword = "long_sword *10 +21 D"
+var shield = "shield *10 +10 A"
+var hammer = "hammer *10 +15 D"
+var hammer2 = "hammer *10 +9 D"
+
+var bossStage = 0
+var fluffState32 = 0
+
+func initEveryRound()
+    bossStage = 0
+    equipL @sword@
+    equipR @shield@
+    fluffState32 = 0
+    
+?loc.begin | loc.loop
+    initEveryRound()
+
+?screen.i = 6 & foe.id = "epic_snail"
+    bossStage = 1
+?foe = boss & foe.id = "mushroom_boss_harder" // state3:49 state33:29
+    bossStage = 2
+?foe = boss & foe.id = "mushroom_boss_fat"
+    bossStage = 3
+?foe = boss & foe.id = "mushroom_boss_skinny"
+    bossStage = 4
+
+?bossStage = 0
+    ?foe.distance > 20
+        commonAction.moveFaster()
+    :?foe.distance > 10
+        commonAction.quickDive()
+    :
+        equipL @sword@
+        equipR @shield@
+
+    ?screen.i = 4 & foe.distance = 30
+        commonAction.activateBlade()
+:?bossStage = 1
+    ?screen.i = 6
+        ?foe.id = "fluff"
+            ?foe.state = 32 //多少帧需要测试
+                ?foe.time > fluffState32
+                    fluffState32 = foe.time
+                // ?foe.time = 10
+                //     commonAction.moveBack()
+
+        equipL @hammer2@
+        equipR @hammer@
+
+        >`0,3,#FFFFFF,fluffState32:@fluffState32@
+    ?foe.distance > 20
+        commonAction.moveFaster()
+    :?foe.distance > 10
+        commonAction.quickDive()
+:?bossStage = 2
+    ?foe.distance > 10
+        commonAction.quickDive()
+    :
+        equipL @hammer2@
+        equipR @hammer@
+:
+    ?foe.distance > 10
+        commonAction.quickDive()
+    :
+        equipL @sword@
+        equipR @hammer@
+
+
+

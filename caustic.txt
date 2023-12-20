@@ -1,0 +1,30 @@
+var commonAction = import commonAction
+
+// var weapon = "quarterstaff *9 +10"
+var causticweapon = "heavy_crossbow *10 +21 dI"
+// var weaponLeft = "long_sword *7 +7"
+// var weaponRight = "shield *7 +7"
+
+?loc.begin
+//初始装备
+  // equipL @weaponLeft@
+  // equipL @weaponRight@
+  equip @causticweapon@
+:
+  ?foe.distance > 20
+    ?pickup & pickup.distance < 15
+      commonAction.autoPickup()
+    :
+      commonAction.moveFaster()
+  :
+    // equipL @weaponLeft@
+    // equipL @weaponRight@
+    equip @causticweapon@
+    // ?foe.distance = 10
+    // ?foe.distance = 10
+    //   commonAction.quickDive()
+
+
+?bossStage = 0    
+    ?screen.i = 5 & foe.distance = 30
+        commonAction.activateBlade()

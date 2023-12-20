@@ -1,0 +1,58 @@
+var commonAction = import commonAction
+
+var undeadweapon = "quarterstaff *10 +21 D Vigor"
+
+var bossStage = 0
+
+var state32Time = 0
+var state33Time = 0
+
+func initEveryRound()
+    bossStage = 0
+    state32Time = 0
+    state33Time = 0
+    equip @undeadweapon@
+
+?loc.begin | loc.loop
+    initEveryRound()
+
+?foe.distance > 20
+    ?pickup & pickup.distance < 15
+        commonAction.autoPickup()
+    :
+        commonAction.moveFaster()
+:
+    equip @undeadweapon@
+    ?foe.distance <= 10
+        commonAction.moveBack()
+
+
+
+?foe = boss & foe.id = "skeleton_boss_harder"
+    bossStage = 1
+    //state32 = 69帧
+?foe = boss & foe.id = "skeleton_boss_stage_2_harder"
+    bossStage = 2
+
+?foe = boss
+    ?foe.state = 32    //69帧
+        ?foe.time > state32Time
+            state32Time = foe.time
+        //第多少帧躲避呢，这需要调试
+        ?foe.time = 69 - 5
+            commonAction.moveBack()
+
+    :?foe.state = 33     //183帧
+        ?foe.time > state33Time
+            state33Time = foe.time
+    // log1(state32Time, state33Time)
+
+
+// //调试代码
+// func log1(state32Time, state33Time)
+//     var x = screen.w
+//     x = x - 20
+//     var y = 1
+//     >`@x@,@y@,#FFFFFF,state32Maxtime @state32Time@
+//     y++
+//     >`@x@,@y@,#FFFFFF,state33Maxtime @state33Time@

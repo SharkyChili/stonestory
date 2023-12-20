@@ -1,0 +1,13 @@
+func cancelAfterAttack()
+    //全局通用取消后摇，写在脚本开头
+    ?item.right.state = 3
+        equipR stones
+    ?item.left.state = 3
+        equipL stones
+
+func commonAddHp()
+    ?hp < 15
+        activate potion
+
+cancelAfterAttack()
+commonAddHp()
