@@ -3,48 +3,48 @@
 // 其他信息请见:StoneStoryRPG.com/stonescript.
 // ——贤者贝赛拉
 
-import common
-import dashboard
-var active = import activescript
+import mine/common
+import mine/dashboard
+var active = import mine/activescript
 //调试代码
-import bossState
+import mine/bossState
 
 ?loc = nagaraja                 //	蛇怪之间
-    import nagaraja
+    import mine/nagaraja
 :?loc = temple                  //	神庙
 
 :?loc = cross_bridge            //	过桥
 
 :?loc = icy_ridge               //	不融山
-    import icyridge
+    import mine/icyridge
 :?loc = bronze_guardian_harder  //青铜守卫
-    import bronze
+    import mine/bronze
 :?loc = bronze_mine             //灼热矿井
-    import bronze  
+    import mine/bronze  
 :?loc = cross_deadwood_river    //	枯木之河对岸
 
 :?loc = undead_crypt_boss       //无皮巨人
-    import undead
+    import mine/undead
     active.showActiveScript("undead")
 :?loc = undead_crypt            //亡者之殿 
-    import undead
+    import mine/undead
     active.showActiveScript("undead")
 :?loc = undead_crypt_intro      //亡者之门
 
 :?loc = uulaa_shop              //温泉店
 
 :?loc = fungus_forest boss      //愤怒蘑菇
-    import fungus
+    import mine/fungus
     active.showActiveScript("fungus")
 :?loc = fungus_forest           //蘑菇森林
-    import fungus
+    import mine/fungus
     active.showActiveScript("fungus")
 :?loc = waterfall               //枯木瀑布
 
 :?loc = caustic_caves           //恐怖洞窟
-    import caustic
+    import mine/caustic
     active.showActiveScript("caustic")
 :?loc = deadwood_valley         //枯木峡谷
 
 :?loc = rocky_plateau           //岩石高地
- 
+    import mine/rocky
