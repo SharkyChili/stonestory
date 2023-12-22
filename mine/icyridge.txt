@@ -1,4 +1,4 @@
-var commonAction = import commonAction
+var commonAction = import mine/commonAction
 
 var sword = "long_sword *10 +21 dF"
 var shield = "shield *10 +7 af"

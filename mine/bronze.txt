@@ -1,4 +1,4 @@
-var commonAction = import commonAction
+var commonAction = import mine/commonAction
 
 var heavyCrossbow = "heavy_crossbow *10 +21 D"
 

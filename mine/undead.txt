@@ -1,4 +1,4 @@
-var commonAction = import commonAction
+var commonAction = import mine/commonAction
 
 var undeadweapon = "quarterstaff *10 +21 D Vigor"
 
