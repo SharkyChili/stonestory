@@ -48,3 +48,5 @@ import mine/bossState
 
 :?loc = rocky_plateau           //岩石高地
     import mine/rocky
+
+//vs code git test
